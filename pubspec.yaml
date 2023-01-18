@@ -6,7 +6,11 @@ version: 1.0.0
 environment:
   sdk: '>=2.18.6 <3.0.0'
 
-# dependencies:
+dependencies: 
+  async: ^2.10.0
+  collection: ^1.17.0
+  grpc: ^3.1.0
+  protobuf: ^2.1.0
 #   path: ^1.8.0
 
 dev_dependencies:

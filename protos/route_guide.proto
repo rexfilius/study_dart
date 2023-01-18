@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.routeguide";
+option java_outer_classname = "RouteGuideProto";
+option objc_class_prefix = "RTG";
+
+package study_dart;
+
+service RouteGuide {
+    // A simple RPC
+    //
+    // Obtains the feature at a given position.
+    // A feature with an empty name is returned if there's no feature
+    // at the given position
+    rpc GetFeature(Point) returns (Feature) {}
+
+    // A server-side streaming RPC
+    //
+    // Obtains the Features available within the given Rectangle.
+    // Results are streamed rather than returned at once
+    // (e.g. in a response message with a repeated field)
+    // as the rectangle may cover a large area and contain a
+    // huge number of features
+    rpc ListFeatures(Rectangle) returns (stream Feature) {}
+
+    // A client-side streaming RPC.
+    //
+    // Accepts a stream of Points on a route being traversed, returning a
+    // RouteSummary when traversal is completed.
+    rpc RecordRoute(stream Point) returns (RouteSummary) {}
+
+    // A Bidirectional streaming RPC.option
+    //
+    // Accepts a stream of RouteNotes sent while a route is being traversed,
+    // while receiving other RouteNotes (e.g. from other users).
+    rpc RouteChat(stream RouteNote) returns (stream RouteNote) {}
+
+
+}
+
+// protocol buffer message type definitions for all the request 
+// and response types used in the service methods 
+message Point {
+    int32 latitude = 1;
+    int32 longitude = 2;
+}
+
+message Rectangle {
+    Point lo = 1;
+    Point hi = 2;
+}
+
+message Feature {
+    string name = 1;
+    Point location = 2;
+}
+
+message RouteNote {
+    Point location = 1;
+    string message = 2;
+}
+
+message RouteSummary {
+    int32 point_count = 1;
+    int32 feature_count = 2;
+    int32 distance = 3;
+    int32 elapsed_time = 4;
+}
