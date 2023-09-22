@@ -19,7 +19,7 @@
 void main() {
   final myFuture = Future<String>.delayed(
     Duration(seconds: 1),
-        () => 'Future',
+    () => 'Future',
   );
   print(myFuture);
   print('');
@@ -27,7 +27,8 @@ void main() {
   print('Before the future');
   final myFuture2 = Future<String>.delayed(
     Duration(seconds: 1),
-        () => 'Future, with callbacks')
+    () => 'Future, with callbacks',
+  )
       .then((value) => print('Value: $value'))
       .catchError((error) => print('Error: $error'))
       .whenComplete(() => print('Future is complete'));
