@@ -16,10 +16,10 @@
  * Output 2: ahhloop                                            *
  *                                                              *
  ***************************************************************/
-void main() {
-  print(alphabetSoup("coderbyte"));  // Output: bcdeeorty
-  print(alphabetSoup("hooplah"));    // Output: ahhloop
-}
+// void main() {
+//   print(alphabetSoup("coderbyte"));  // Output: bcdeeorty
+//   print(alphabetSoup("hooplah"));    // Output: ahhloop
+// }
 
 String alphabetSoup(String str) {
   // Convert the string to a list of characters
